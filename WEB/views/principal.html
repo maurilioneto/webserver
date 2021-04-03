@@ -1,0 +1,16 @@
+<div class="p-5">
+    <h1>{{name}}</h1>
+    <p>Personalize a vontade</p>
+
+    <h2>Usuários no sistema:</h2>
+    <div class="card" ng-repeat="usuario in usuarios track by usuario.id">
+        <div class="card-body">
+            <h3>Nome: {{usuario.nome}}</h3>
+            <p>
+                Sobrenome: {{usuario.sobrenome}}
+                <br>
+                Saldo: {{usuario.saldo}}
+            </p>
+        </div>
+    </div>
+</div>
