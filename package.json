@@ -1,11 +1,10 @@
 {
-  "name": "webserver",
-  "version": "1.0.0",
-  "description": "Webserver",
-  "main": "index.js",
-  "author": "maurilio neto",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mariadb": "^2.5.3",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2"
   }
 }

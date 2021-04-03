@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="webserver">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Importar Angular e Bootestrap-->
+        <script src="./lib/angularjs/angular.min.js"></script>
+        <script src="./lib/angularjs/angular-route.min.js"></script>
+        <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+        <!--Iniciar aplicação angular-->
+        <script>
+            var app = angular.module('webserver', [
+                'ngRoute'
+            ]);
+        </script>
+        <!--Rotas-->
+        <script src="./config/menuRoute.js"></script>
+        <!--Servicos-->
+        <script src="./services/requestService.js"></script>
+        <!--Importar Controllers-->
+        <script src="./controllers/principalController.js"></script>
+        <title>Web Server</title>
+    </head>
+
+    <body>
+        <!--Menu de Navegação Superior-->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand mr-auto fs-1" href="#">🔥 Webserver</a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbar01" aria-controls="navbar01" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse justify-content-end" id="navbar01">
+                    <ul class="navbar-nav my-2 mb-lg-0">
+                        <li class="nav-item nav-item-right">
+                            <a class="nav-link" href="#!/rota1">Rota 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!/rota2">Rota 2</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Opções</a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown10">
+                                <li><a class="dropdown-item" href="#">Opção 1</a></li>
+                                <li><a class="dropdown-item" href="#">Opção 2</a></li>
+                                <li><a class="dropdown-item" href="#">Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--Views-->
+        <div ng-view></div>
+    </body>
+
+</html>

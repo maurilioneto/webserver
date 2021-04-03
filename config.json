@@ -1,0 +1,13 @@
+{
+    "PORT": 443,
+    "HOST": "https://localhost",
+    "rootFolder": "./WEB",
+    "defaultIndex": "/index.html",
+    "databaseVendor": "mariadb",
+    "databaseUser": "userDoBancoDeDados",
+    "databasePassword": "senhaDoBancoDeDados",
+    "databaseSchema": "nomeDatabaseOuSchema",
+    "databaseHost": "localhost",
+    "createDatabase": true, 
+    "createDatabaseAlter": true
+}
