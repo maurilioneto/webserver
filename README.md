@@ -64,3 +64,7 @@ Suporta os seguintes bancos de dados:
 > npm i -g nodemon
 > nodemon index.js
 ```
+
+>
+> **Aviso:** Caso utilize servidores em produção adicione config.json e suas chaves ssh ao **.gitignore** para que não fiquem acessíveis pelo git.
+>
