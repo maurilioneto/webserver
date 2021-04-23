@@ -5,6 +5,10 @@ app.config(function($routeProvider){
             templateUrl : '/views/principal.html',
             controller: 'principalController'
         })
+        .when("/login", {
+            templateUrl : '/views/login.html',
+            controller: 'loginController'
+        })
         .when("/rota1", {
             templateUrl : '/views/rota1.html',
             controller: 'rota1Controller'

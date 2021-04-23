@@ -9,6 +9,7 @@
         <script src="./lib/angularjs/angular-route.min.js"></script>
         <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css">
         <!--Iniciar aplicação angular-->
         <script>
             var app = angular.module('webserver', [
@@ -21,6 +22,9 @@
         <script src="./services/requestService.js"></script>
         <!--Importar Controllers-->
         <script src="./controllers/principalController.js"></script>
+        <script src="./controllers/rota1Controller.js"></script>
+        <script src="./controllers/rota2Controller.js"></script>
+        <script src="./controllers/loginController.js"></script>
         <title>Web Server</title>
     </head>
 
@@ -56,7 +60,7 @@
         </nav>
 
         <!--Views-->
-        <div ng-view></div>
+        <div class="grow" ng-view></div>
     </body>
 
 </html>

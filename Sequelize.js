@@ -16,6 +16,6 @@ const sequelize = new Sequelize(config.databaseSchema, config.databaseUser, conf
 //TENTAR CONEXÃO
 sequelize.authenticate()
 .then(()=>console.log('Conectado ao Banco de Dados com sucesso!'))
-.catch(()=>console.error('Não foi possível se conectar ao Banco de Dados: ', error))
+.catch((error)=>console.error('Não foi possível se conectar ao Banco de Dados: ', error))
 
 module.exports = sequelize;
