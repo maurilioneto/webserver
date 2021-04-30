@@ -4,15 +4,16 @@ const sequelize = require('../Sequelize');
 const Usuario = sequelize.define('Usuario', {
   //Atributos vão aqui
   id: {
-    type: DataTypes.UUID,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false
   },
   nome: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  sobrenome: {
+  email: {
     type: DataTypes.STRING,
     allowNull: true
   },
@@ -24,8 +25,9 @@ const Usuario = sequelize.define('Usuario', {
     type: DataTypes.DATEONLY,
     allowNull: false
   },
-  saldo: {
-    type: DataTypes.DECIMAL,
+  emailVerificado: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
     allowNull: false
   }
 }, {

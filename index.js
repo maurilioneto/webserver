@@ -3,12 +3,14 @@ const sequelize = require('./Sequelize');
 const express = require('express');
 const http = require('http');
 const https = require('https');
+const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const path = require('path');
 const app = express();
 
 
 //IMPORTAR ROTAS
+const {autenticacaoRoute, validarToken} = require('./Routes/AutenticacaoRoute');
 const usuarioRoute = require('./Routes/UsuarioRoute');
 
 //CONFIGURACAO 
@@ -18,8 +20,15 @@ const credentials = {
     cert: fs.readFileSync('certificate.pem')
 };
 
-//ROTAS BACKEND
+app.use(cookieParser());
+
+//ROTAS QUE NÃO REQUEREM AUTENTICACAO
+app.use('/autenticar', express.json());
+app.use('/autenticar', autenticacaoRoute);
+
+//ROTAS QUE REQUEREM AUTENTICACAO
 app.use('/rest', express.json());
+app.use('/rest', validarToken);
 app.use('/rest/usuario', usuarioRoute);
 
 //ROTAS FRONTEND
