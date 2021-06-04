@@ -4,19 +4,19 @@
             <h1 class="card-title text-center">🔥</h1>
             <div class="card-body">
                 <label for="cNome">Nome:</label>
-                <input type="text" class="form-control" id="cNome"/>
+                <input type="text" class="form-control" id="cNome" ng-model="usuario.nome"/>
                 <label for="cEmail">E-mail:</label>
-                <input type="email" class="form-control" id="cEmail"/>
+                <input type="email" class="form-control" id="cEmail" ng-model="usuario.email"/>
                 <label for="cDataNasc">Data de Nascimento:</label>
-                <input type="date" class="form-control" id="cDataNasc"/>
+                <input type="date" class="form-control" id="cDataNasc" ng-model="usuario.dataNascimento"/>
                 <label for="cPass">Senha:</label>
-                <input type="password" class="form-control" id="cPassConf"/>
+                <input type="password" class="form-control" id="cPass" ng-model="usuario.senha"/>
                 <label for="cPassConf">Repetir a senha:</label>
-                <input type="password" class="form-control" id="cPass"/>
-                <button class="mt-5 btn btn-block btn-primary">Registrar-se</button>
+                <input type="password" class="form-control" id="cPassConf" ng-model="confirmaSenha"/>
+                <button class="mt-5 btn btn-block btn-primary" ng-click="btnRegistrar(usuario, confirmaSenha)">Registrar-se</button>
             </div>
             <div class="card-footer">
-                <p>Já possui uma conta? <a href="#!login">Entrar</a>.</p>
+                <p>Já possui uma conta? <a href="#!/login">Entrar</a>.</p>
             </div>
         </div>
     </div>
