@@ -31,21 +31,38 @@ app.use('/rest', express.json());
 app.use('/rest', validarToken);
 app.use('/rest/usuario', usuarioRoute);
 
+//IMPORTAR ARQUIVOS QUE NÃO PRECISAM DE AUTENTICAÇÃO
+const listaArquivosNaoProtegidos = require('./WEB/config/arquivosNaoProtegidos.json');
+
 //ROTAS FRONTEND
 app.use((req, res) => {
+    
     //obtendo requisição
-    var filename = req.url !== '/' ? req.url:config.defaultIndex;
-    var fullPath = config.rootFolder + filename;
+    var check = req.url !== '/' ? req.url:config.defaultIndex;
+    
+    //função de retorno
+    function returnFront(req, res) {
+        //conferir nomes
+        var filename = req.url !== '/' ? req.url:config.defaultIndex;
+        var fullPath = config.rootFolder + filename;
+    
+        //debug
+        config.DEBUG && console.log(`Requisição de ${req.ip} por ${fullPath}`)
+    
+        //procurar o arquivo e caso achado responder
+        fs.readFile(config.rootFolder + filename, (err, data) => {
+            if (err) {
+                res.status(404).send();
+            }
+            res.sendFile(path.join(__dirname, fullPath));
+        });
+    }
 
-    console.log(`Requisição de ${req.ip} por ${fullPath}`)
-
-    //procurar o arquivo e caso achado responder
-    fs.readFile(config.rootFolder + filename, (err, data) => {
-        if (err) {
-            res.status(404).send();
-        }
-        res.sendFile(path.join(__dirname, fullPath));
-    });
+    if (listaArquivosNaoProtegidos.findIndex(item => item == filename) >= 0) {
+        returnFront(req, res);
+    } else {
+        validarToken(req, res, returnFront)
+    }
 })
 
 //CONSTRUIR SERVER

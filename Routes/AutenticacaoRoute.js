@@ -59,7 +59,7 @@ const validarToken = (req, res, next) => {
     if (jw.verify(req.cookies.authentication, config.SECRET)) {
         next();
     } else {
-        res.redirect('/#!/login')
+        res.redirect('/#!/login');
     }
 }
 
