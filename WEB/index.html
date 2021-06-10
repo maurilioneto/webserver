@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="webserver">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Importar Angular e Bootestrap-->
-        <script src="./lib/angularjs/angular.min.js"></script>
-        <script src="./lib/angularjs/angular-route.min.js"></script>
-        <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./lib/angularjs/angular.min.js"></script>
+        <script type="text/javascript" src="./lib/angularjs/angular-route.min.js"></script>
+        <script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
         <!--Iniciar aplicação angular-->
@@ -26,24 +25,26 @@
                                 alert(`Erro: ${error}`);
                                 return;
                             }
-                            document.location = '#!/login';
+                            document.location = '/';
                         });
                     }
-
-                }]);
+                }
+            ]);
         </script>
-        <!--Rotas-->
-        <script src="./config/menuRoute.js"></script>
-        <!--Servicos-->
-        <script src="./services/requestService.js"></script>
-        <!--Importar Controllers-->
-        <script src="./controllers/principalController.js"></script>
-        <script src="./controllers/rota1Controller.js"></script>
-        <script src="./controllers/rota2Controller.js"></script>
-        <script src="./controllers/loginController.js"></script>
-        <script src="./controllers/homeController.js"></script>
-        <script src="./controllers/registrarController.js"></script>
-        <title>Webserver</title>
+        <!-- Rotas -->
+        <script type="text/javascript" src="./config/menuRoute.js"></script>
+        <!-- Servicos -->
+        <script type="text/javascript" src="./services/requestService.js"></script>
+        <!-- Diretivas -->
+        <script type="text/javascript" src="./directives/customDirectives.js"></script>
+        <!-- Importar Controllers -->
+        <script type="text/javascript" src="./controllers/principalController.js"></script>
+        <script type="text/javascript" src="./controllers/rota1Controller.js"></script>
+        <script type="text/javascript" src="./controllers/rota2Controller.js"></script>
+        <script type="text/javascript" src="./controllers/loginController.js"></script>
+        <script type="text/javascript" src="./controllers/homeController.js"></script>
+        <script type="text/javascript" src="./controllers/registrarController.js"></script>
+        <title>🔥 Webserver</title>
     </head>
 
     <body>

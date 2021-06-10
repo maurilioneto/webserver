@@ -3,15 +3,20 @@ function($scope, requestService) {
     $scope.name = 'Login';
 
     $scope.btnEntrar = function (usuario) {
+
+        //validações
+        $scope.error = undefined;
+        if (!usuario || !usuario.email || !usuario.senha) $scope.error = 'Por favor informe o usuário e a senha!';
+        if ($scope.error) return;
+
         requestService.POST('/autenticar/', usuario, function (res) {
             console.log(res);
             if (res.error) {
-                alert("ERRO: " + res.error);
+                $scope.error = res.error;
             } else {
-                document.location = "/";
+                document.location = "#!/principal";
             }
         })
     }
-
 
 }]);

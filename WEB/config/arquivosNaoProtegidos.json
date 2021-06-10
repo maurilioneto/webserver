@@ -10,5 +10,6 @@
     "/css/*",
     "/services/requestService.js",
     "/home.html",
-    "/controllers/homeController.js"
+    "/controllers/homeController.js",
+    "/directives/*"
 ]

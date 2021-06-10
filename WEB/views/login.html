@@ -4,10 +4,13 @@
             <h1 class="card-title text-center">🔥 {{name}}</h1>
             <div class="card-body">
                 <label for="cUser">E-mail</label>
-                <input type="email" class="form-control" id="cUser" ng-model="usuario.email"/>
+                <input type="email" class="form-control" id="cUser" ng-model="usuario.email" autofocus/>
                 <label for="cPass">Senha</label>
-                <input type="password" class="form-control" id="cPass" ng-model="usuario.senha"/>
-                <button class="mt-5 btn btn-block btn-primary" ng-click="btnEntrar(usuario)">Entrar</button>
+                <input type="password" class="form-control mb-3" id="cPass" ng-model="usuario.senha" ng-enter="btnEntrar(usuario)" autofocus/>
+                <div class="alert alert-danger mt-0 mb-0" role="alert" ng-show="error">
+                    {{error}}
+                </div>
+                <button class="mt-2 btn btn-block btn-primary" ng-click="btnEntrar(usuario)">Entrar</button>
             </div>
             <div class="card-footer">
                 <p>Ainda não é registrado? Inscreva-se <a href="#!/registrar">Aqui</a>.</p>
