@@ -1,8 +1,14 @@
 [
-    "loginController.js",
-    "registrarController.js",
-    "menuRoute.js",
-    "index.html",
-    "login.html",
-    "registrar.html"
+    "/controllers/loginController.js",
+    "/controllers/registrarController.js",
+    "/config/menuRoute.js",
+    "/index.html",
+    "/views/login.html",
+    "/views/registrar.html",
+    "/favicon.ico",
+    "/lib/*",
+    "/css/*",
+    "/services/requestService.js",
+    "/home.html",
+    "/controllers/homeController.js"
 ]

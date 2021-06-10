@@ -40,9 +40,9 @@ autenticacaoRoute.post('/', async (req, res) => {
 //REGISTRAR
 autenticacaoRoute.post('/registrar', async (req, res) => {
     try {
-        const usuario = Usuario.build(req.body);
+        const usuario = await Usuario.build(req.body);
         //gerar hash da senha
-        usuario.senha = bcrypt.hashSync(usuario.senha, config.SALT);
+        usuario.senha = await bcrypt.hashSync(usuario.senha, config.SALT);
         await usuario.save();
         //remover a senha ao devolver usuário
         usuario.senha = undefined;
@@ -53,13 +53,24 @@ autenticacaoRoute.post('/registrar', async (req, res) => {
     }
 });
 
+//SAIR
+autenticacaoRoute.post('/sair', async (req, res) => {
+    try {
+        res.clearCookie("authentication");
+        res.redirect(301,'/#!/login');
+    } catch (error) {
+        config.DEBUG && console.log(error);
+        res.status(400).json({error: 'Não foi possível processar a requisição!'});
+    }
+});
+
 //MIDDLEWARE DE VALIDACAO
 const validarToken = (req, res, next) => {
-    config.DEBUG && console.log(req.cookies);
-    if (jw.verify(req.cookies.authentication, config.SECRET)) {
+    if (req.cookies.authentication && jw.verify(req.cookies.authentication, config.SECRET)) {
         next();
     } else {
-        res.redirect('/#!/login');
+        config.DEBUG && console.log(`REDIRECIONADO ${req.url}`);
+        res.redirect(301,'/#!/login');
     }
 }
 

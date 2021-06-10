@@ -11,8 +11,8 @@ function($scope, requestService) {
         }
 
         requestService.POST('/autenticar/registrar', usuario, function (res) {
-            if (res.data.error) {
-                alert("ERRO: " + res.data.error);
+            if (res.error) {
+                alert("ERRO: " + res.error);
             } else {
                 document.location = "#!/login";
             }

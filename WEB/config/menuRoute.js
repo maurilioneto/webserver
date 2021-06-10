@@ -2,6 +2,10 @@
 app.config(function($routeProvider){
     $routeProvider
         .when("/", {
+            templateUrl : '/views/home.html',
+            controller: 'homeController'
+        })
+        .when("/home", {
             templateUrl : '/views/principal.html',
             controller: 'principalController'
         })

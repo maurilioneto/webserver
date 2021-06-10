@@ -13,6 +13,12 @@ body {
     height: 100%;
 }
 
+.view {
+    width: 100%;
+    height: calc(100% - 86px);
+    overflow: auto;
+}
+
 .card-xl {
     width: 700px;
 }

@@ -4,8 +4,9 @@ function($scope, requestService) {
 
     $scope.btnEntrar = function (usuario) {
         requestService.POST('/autenticar/', usuario, function (res) {
-            if (res.data.error) {
-                alert("ERRO: " + res.data.error);
+            console.log(res);
+            if (res.error) {
+                alert("ERRO: " + res.error);
             } else {
                 document.location = "/";
             }

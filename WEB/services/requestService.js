@@ -11,7 +11,7 @@ app.service('requestService', ['$http', function ($http) {
 			}
 			callback(retorno.data)
 		});      
-  }
+	}
 	
 	/* GET */
 	this.GET = function (pURL, callback) {
@@ -24,6 +24,19 @@ app.service('requestService', ['$http', function ($http) {
 			}
 			callback(retorno.data)
 		});
-  }
+	}
+
+	/* GET */
+	this.redirectNotAuthenticated = function (pURL, callback) {
+    
+		$http.get(pURL).then(function(retorno){
+			callback(retorno.data) 
+		}).catch(function(retorno){
+			if (retorno.data.redirect) {
+				document.location = retorno.data.redirect;
+			}
+			callback(retorno.data)
+		});
+	}
 	
 }]);

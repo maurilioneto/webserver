@@ -38,31 +38,25 @@ const listaArquivosNaoProtegidos = require('./WEB/config/arquivosNaoProtegidos.j
 app.use((req, res) => {
     
     //obtendo requisição
-    var check = req.url !== '/' ? req.url:config.defaultIndex;
-    
-    //função de retorno
-    function returnFront(req, res) {
-        //conferir nomes
-        var filename = req.url !== '/' ? req.url:config.defaultIndex;
-        var fullPath = config.rootFolder + filename;
-    
-        //debug
-        config.DEBUG && console.log(`Requisição de ${req.ip} por ${fullPath}`)
-    
-        //procurar o arquivo e caso achado responder
-        fs.readFile(config.rootFolder + filename, (err, data) => {
-            if (err) {
-                res.status(404).send();
-            }
-            res.sendFile(path.join(__dirname, fullPath));
-        });
+    var filename = req.url !== '/' ? req.url:config.defaultIndex;
+    var fullPath = config.rootFolder + filename;
+
+    //debug
+    config.DEBUG && console.log(`Requisição de ${req.ip} por ${filename}`)
+
+    //validar se precisa autenticar
+    if (listaArquivosNaoProtegidos.findIndex(item => filename.match(item)) == -1) {
+        validarToken(req, res, () => {});
     }
 
-    if (listaArquivosNaoProtegidos.findIndex(item => item == filename) >= 0) {
-        returnFront(req, res);
-    } else {
-        validarToken(req, res, returnFront)
-    }
+    //procurar o arquivo e caso achado responder
+    fs.readFile(fullPath, (err, data) => {
+        if (err) {
+            res.status(404).send();
+        }
+        res.sendFile(path.join(__dirname, fullPath));
+    });
+
 })
 
 //CONSTRUIR SERVER
