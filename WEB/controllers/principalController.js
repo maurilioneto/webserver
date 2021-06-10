@@ -4,11 +4,11 @@ function($scope, requestService) {
     
     //demonstração de interação com backend
     $scope.obterUsuarios = requestService.GET('/rest/usuario/obterTodos', function(ret){
-        if (!ret.isValid) {
-            alert(`Erro: ${ret.data}`);
+        if (ret.error) {
+            alert(`Erro: ${ret.error}`);
             return;
         }
-        $scope.usuarios = ret.data;
+        $scope.usuarios = ret;
     });
 
 }]);

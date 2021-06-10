@@ -3,11 +3,14 @@
     "HOST": "https://localhost",
     "rootFolder": "./WEB",
     "defaultIndex": "/index.html",
-    "databaseVendor": "mariadb",
-    "databaseUser": "userDoBancoDeDados",
-    "databasePassword": "senhaDoBancoDeDados",
-    "databaseSchema": "nomeDatabaseOuSchema",
+    "databaseVendor": "postgres",
+    "databaseUser": "postgres",
+    "databasePassword": "admin",
+    "databaseSchema": "webserver",
     "databaseHost": "localhost",
     "createDatabase": true, 
-    "createDatabaseAlter": true
+    "createDatabaseAlter": true,
+    "SALT": 10,
+    "SECRET": "bacon is good!",
+    "DEBUG": true
 }

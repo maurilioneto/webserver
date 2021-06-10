@@ -1,12 +1,16 @@
 const express = require('express');
 const Usuario = require('../Models/Usuario');
+const config = require('../config.json');
+const bcrypt = require('bcryptjs');
 
 const usuarioRoute = express.Router();
 
 //OBTER TODOS
 usuarioRoute.get('/obterTodos', async (req, res) => {
-    Usuario.findAll().then(data => {
-        res.status(200).json(data);
+    console.log('AQUI');
+    await Usuario.findAll().then(data => {
+        data.forEach(usuario => usuario.senha = undefined);
+        res.status(200).json(data.flat());
     }).catch(error => {
         res.status(400).send("Não foi possível obter os Usuários!\n" + `Error: ${error}`);
     })
@@ -14,17 +18,19 @@ usuarioRoute.get('/obterTodos', async (req, res) => {
 
 //OBTER POR ID
 usuarioRoute.post('/obterPorId', async (req, res) => {
-    Usuario.findByPk(req.body.id).then(data => {
+    await Usuario.findByPk(req.body.id).then(data => {
+        data.senha = undefined;
         res.status(200).json(data);
     }).catch(error => {
         res.status(400).send("Não foi possível obter o Usuário!\n" + `Error: ${error}`);
     });
 });
 
-//OBTER TODOS
+//SALVAR
 usuarioRoute.post('/salvar', async (req, res) => {
     try {
-        const usuario = Usuario.build(req.body);
+        const usuario = await Usuario.build(req.body);
+        usuario.senha = bcrypt.hashSync(usuario.senha, config.SALT);
         await usuario.save();
         res.status(200).json(usuario);
     } catch (error) {
@@ -32,10 +38,10 @@ usuarioRoute.post('/salvar', async (req, res) => {
     }
 });
 
-//OBTER TODOS
+//DELETAR
 usuarioRoute.post('/deletarPorId', async (req, res) => {
     try {
-        const usuario = Usuario.build(req.body);
+        const usuario = await Usuario.findByPk(req.body.id);
         usuario.destroy();
         res.status(200).send(usuario);
     } catch (error) {

@@ -2,8 +2,20 @@
 app.config(function($routeProvider){
     $routeProvider
         .when("/", {
+            templateUrl : '/views/home.html',
+            controller: 'homeController'
+        })
+        .when("/home", {
             templateUrl : '/views/principal.html',
             controller: 'principalController'
+        })
+        .when("/login", {
+            templateUrl : '/views/login.html',
+            controller: 'loginController'
+        })
+        .when("/registrar", {
+            templateUrl : '/views/registrar.html',
+            controller: 'registrarController'
         })
         .when("/rota1", {
             templateUrl : '/views/rota1.html',

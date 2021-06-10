@@ -1,7 +1,7 @@
 # Aplicação Webserver
 
 Este é um modelo base para iniciar aplicações Web.
-Esta estrutura possui backend (express e Sequelize) e frontend (angularJS e Bootstrap).
+Esta estrutura possui backend (Express e Sequelize) e frontend (angularJS e Bootstrap).
 
 Suporta os seguintes bancos de dados:
 - Mysql;
@@ -23,7 +23,7 @@ Suporta os seguintes bancos de dados:
 ```
 
 ### Configuração
-1. Edite o arquivo **config.json** com os seus dados:
+1. Edite o arquivo **config.json** com os seus dados (como no exemplo abaixo, em um banco postgre local):
 > Para mais orientações quanto ao Sequelize há uma guia rápido [neste link](https://sequelize.org/master/manual/getting-started.html).
 
 ```
@@ -32,13 +32,16 @@ Suporta os seguintes bancos de dados:
     "HOST": "https://localhost",
     "rootFolder": "./WEB",
     "defaultIndex": "/index.html",
-    "databaseVendor": "mariadb",
-    "databaseUser": "userDoBancoDeDados",
-    "databasePassword": "senhaDoBancoDeDados",
-    "databaseSchema": "nomeDatabaseOuSchema",
+    "databaseVendor": "postgres",
+    "databaseUser": "postgres",
+    "databasePassword": "admin",
+    "databaseSchema": "webserver",
     "databaseHost": "localhost",
     "createDatabase": true, 
-    "createDatabaseAlter": true
+    "createDatabaseAlter": true,
+    "SALT": 10,
+    "SECRET": "bacon is good!",
+    "DEBUG": true
 }
 ```
 
@@ -52,10 +55,11 @@ Suporta os seguintes bancos de dados:
 
 ### Rodando o Projeto
 
-1. Basta rodá-lo com node.
+1. Basta rodá-lo com node ou nodemon.
 
 ```
 > node index.js
+> nodemon index.js
 ```
 
 2. Para desenvolvimento sugiro o nodemon, basta instala-lo globalmente e iniciar o projeto, a cada modificação ele reiniciará o server autormaticamente.

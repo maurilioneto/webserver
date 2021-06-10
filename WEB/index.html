@@ -9,11 +9,28 @@
         <script src="./lib/angularjs/angular-route.min.js"></script>
         <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css">
         <!--Iniciar aplicação angular-->
         <script>
             var app = angular.module('webserver', [
                 'ngRoute'
             ]);
+
+            app.controller('mainController', ['$scope', 'requestService',
+                function($scope, requestService) {
+                    $scope.name = 'Login';
+
+                    $scope.btnSair = function () {
+                        requestService.POST('/autenticar/sair', null, function (ret) {
+                            if (ret.error) {
+                                alert(`Erro: ${error}`);
+                                return;
+                            }
+                            document.location = '#!/login';
+                        });
+                    }
+
+                }]);
         </script>
         <!--Rotas-->
         <script src="./config/menuRoute.js"></script>
@@ -21,12 +38,17 @@
         <script src="./services/requestService.js"></script>
         <!--Importar Controllers-->
         <script src="./controllers/principalController.js"></script>
-        <title>Web Server</title>
+        <script src="./controllers/rota1Controller.js"></script>
+        <script src="./controllers/rota2Controller.js"></script>
+        <script src="./controllers/loginController.js"></script>
+        <script src="./controllers/homeController.js"></script>
+        <script src="./controllers/registrarController.js"></script>
+        <title>Webserver</title>
     </head>
 
     <body>
         <!--Menu de Navegação Superior-->
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" ng-controller="mainController">
             <div class="container-fluid">
                 <a class="navbar-brand mr-auto fs-1" href="#">🔥 Webserver</a>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
@@ -44,10 +66,10 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Opções</a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdown10">
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown10">
                                 <li><a class="dropdown-item" href="#">Opção 1</a></li>
                                 <li><a class="dropdown-item" href="#">Opção 2</a></li>
-                                <li><a class="dropdown-item" href="#">Sair</a></li>
+                                <li><span class="dropdown-item" ng-click="btnSair()">Sair</span></li>
                             </ul>
                         </li>
                     </ul>
@@ -56,7 +78,7 @@
         </nav>
 
         <!--Views-->
-        <div ng-view></div>
+        <div class="view" ng-view></div>
     </body>
 
 </html>
