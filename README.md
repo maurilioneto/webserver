@@ -66,5 +66,8 @@ Suporta os seguintes bancos de dados:
 
 ```
 > npm i -g nodemon
-> nodemon index.js
 ```
+
+3. Para gerar os acessos necessários deve-se acessar a rota **/sincronizar** manualmente ou pelo navegador
+
+[https://localhost/sincronizar](https://localhost/sincronizar)

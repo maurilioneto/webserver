@@ -7,7 +7,6 @@ const usuarioRoute = express.Router();
 
 //OBTER TODOS
 usuarioRoute.get('/obterTodos', async (req, res) => {
-    console.log('AQUI');
     await Usuario.findAll().then(data => {
         data.forEach(usuario => usuario.senha = undefined);
         res.status(200).json(data.flat());

@@ -12,6 +12,7 @@ const app = express();
 //IMPORTAR ROTAS
 const {autenticacaoRoute, validarToken} = require('./Routes/AutenticacaoRoute');
 const usuarioRoute = require('./Routes/UsuarioRoute');
+const acessoRoute = require('./Routes/AcessoRoute');
 
 //CONFIGURACAO 
 const config = require('./config.json');
@@ -30,9 +31,17 @@ app.use('/autenticar', autenticacaoRoute);
 app.use('/rest', express.json());
 app.use('/rest', validarToken);
 app.use('/rest/usuario', usuarioRoute);
+app.use('/rest/acesso', acessoRoute);
 
-//IMPORTAR ARQUIVOS QUE NÃO PRECISAM DE AUTENTICAÇÃO
-const listaArquivosNaoProtegidos = require('./WEB/config/arquivosNaoProtegidos.json');
+//SINCRONIZAR OS ACESSOS
+const Acesso = require('./Models/Acesso');
+app.get('/sincronizar', (req, res) => {
+    //adicionar Acessos
+    Acesso.create({id: 10, descricao: 'Rota 1', rota: '#!/rota1', categoria: 'Cadastros'});
+    Acesso.create({id: 20, descricao: 'Rota 2', rota: '#!/rota2', categoria: 'Cadastros'});
+    Acesso.create({id: 30, descricao: 'Principal', rota: '#!/principal', categoria: 'Consultas'});
+    res.status(200).send('OK');
+});
 
 //ROTAS FRONTEND
 app.use((req, res) => {

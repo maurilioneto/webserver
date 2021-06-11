@@ -11,13 +11,33 @@
         <link rel="stylesheet" href="./css/style.css">
         <!--Iniciar aplicação angular-->
         <script>
+            //cria angularjs app
             var app = angular.module('webserver', [
                 'ngRoute'
             ]);
 
+            //controller geral
             app.controller('mainController', ['$scope', 'requestService',
                 function($scope, requestService) {
                     $scope.name = 'Login';
+
+                    //iniciar vazio
+                    $scope.listaAcessos = [];
+                    $scope.listaCategorias = [];
+
+                    //obter acessos e categorias para navegação
+                    requestService.GET('/rest/acesso/obterTodos', function (ret) {
+                        if (ret.error) {
+                            return;
+                        }
+                        $scope.listaAcessos = ret;
+                        $scope.listaCategorias = [];
+                        for (a in $scope.listaAcessos) {
+                            if (!$scope.listaCategorias.find(item => item == $scope.listaAcessos[a].categoria)) {
+                                $scope.listaCategorias.push(angular.copy($scope.listaAcessos[a].categoria));
+                            }
+                        }
+                    });
 
                     $scope.btnSair = function () {
                         requestService.POST('/autenticar/sair', null, function (ret) {
@@ -57,21 +77,16 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse justify-content-end" id="navbar01">
+                <div class="navbar-collapse collapse justify-content-end" id="navbarCategorias">
                     <ul class="navbar-nav my-2 mb-lg-0">
-                        <li class="nav-item nav-item-right">
-                            <a class="nav-link" href="#!/rota1">Rota 1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#!/rota2">Rota 2</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Opções</a>
-                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown10">
-                                <li><a class="dropdown-item" href="#">Opção 1</a></li>
-                                <li><a class="dropdown-item" href="#">Opção 2</a></li>
-                                <li><span class="dropdown-item" ng-click="btnSair()">Sair</span></li>
+                        <li class="nav-item dropdown" ng-repeat="categoria in listaCategorias">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{categoria}}</a>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="{{categoria}}">
+                                <li ng-repeat="acesso in listaAcessos | filter:{categoria: categoria}"><a class="dropdown-item" href="{{acesso.rota}}">{{acesso.descricao}}</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item me-3 ms-3">
+                            <span class="nav-link" ng-click="btnSair()">Sair</span>
                         </li>
                     </ul>
                 </div>
