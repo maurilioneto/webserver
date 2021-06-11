@@ -64,21 +64,29 @@ autenticacaoRoute.post('/sair', async (req, res) => {
     }
 });
 
+//SAIR
+autenticacaoRoute.post('/check', async (req, res) => {
+    try {
+        if (!req.cookies || !req.cookies.authentication || !jw.verify(req.cookies.authentication, config.SECRET)) {
+            res.status(403).json({redirect: '#!/login'});
+        }
+        res.status(200).send('autorizado!');
+    } catch (error) {
+        config.DEBUG && console.log(error);
+        res.status(400).json({error: 'Não foi possível processar a requisição!'});
+    }
+});
+
+
 //MIDDLEWARE DE VALIDACAO
 const validarToken = (req, res, next) => {
     if (req.cookies && req.cookies.authentication && jw.verify(req.cookies.authentication, config.SECRET)) {
+        //autorizado a fazer a requisição
         next();
     } else {
-        config.DEBUG && console.log(`REDIRECIONADO ${req.url}`);
-        res.redirect(301,'/#!/login');
+        //redirecionar para login
+        res.status(403).json({redirect: '#!/login'});
     }
 }
 
-//MIDDLEWARE DE VALIDACAO FRONT END
-const validarTokenFrontEnd = (req, res) => {
-    if (!req.cookies || !req.cookies.authentication || !jw.verify(req.cookies.authentication, config.SECRET)) {
-        res.status(403).send('Não Autorizado!');
-    }
-}
-
-module.exports = {autenticacaoRoute, validarToken, validarTokenFrontEnd};
+module.exports = {autenticacaoRoute, validarToken};
