@@ -66,7 +66,7 @@ autenticacaoRoute.post('/sair', async (req, res) => {
 
 //MIDDLEWARE DE VALIDACAO
 const validarToken = (req, res, next) => {
-    if (req.cookies.authentication && jw.verify(req.cookies.authentication, config.SECRET)) {
+    if (req.cookies && req.cookies.authentication && jw.verify(req.cookies.authentication, config.SECRET)) {
         next();
     } else {
         config.DEBUG && console.log(`REDIRECIONADO ${req.url}`);
@@ -74,4 +74,11 @@ const validarToken = (req, res, next) => {
     }
 }
 
-module.exports = {autenticacaoRoute, validarToken};
+//MIDDLEWARE DE VALIDACAO FRONT END
+const validarTokenFrontEnd = (req, res) => {
+    if (!req.cookies || !req.cookies.authentication || !jw.verify(req.cookies.authentication, config.SECRET)) {
+        res.status(403).send('Não Autorizado!');
+    }
+}
+
+module.exports = {autenticacaoRoute, validarToken, validarTokenFrontEnd};

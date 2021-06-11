@@ -10,7 +10,7 @@ const app = express();
 
 
 //IMPORTAR ROTAS
-const {autenticacaoRoute, validarToken} = require('./Routes/AutenticacaoRoute');
+const {autenticacaoRoute, validarToken, validarTokenFrontEnd} = require('./Routes/AutenticacaoRoute');
 const usuarioRoute = require('./Routes/UsuarioRoute');
 
 //CONFIGURACAO 
@@ -46,7 +46,7 @@ app.use((req, res) => {
 
     //validar se precisa autenticar
     if (listaArquivosNaoProtegidos.findIndex(item => filename.match(item)) == -1) {
-        validarToken(req, res, () => {});
+        validarTokenFrontEnd(req, res);
     }
 
     //procurar o arquivo e caso achado responder
