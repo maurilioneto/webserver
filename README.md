@@ -50,7 +50,7 @@ Suporta os seguintes bancos de dados:
 1. Caso necessário gere um novo par de chaves para o protocolo ssh, [tutorial neste link](https://computadorcomwindows.com/2018/07/27/tutorial-como-gerar-uma-chave-ssh-no-windows-10/)
 
 >
-> **Aviso:** Caso utilize servidores em produção adicione config.json e suas chaves ssh ao **.gitignore** para que não fiquem acessíveis pelo git.
+> **Aviso:** Caso faça uma brach para uso pessoal/comercial adicione config.json e suas chaves ssh ao **.gitignore** para que as suas informações privadas não fiquem vulneráveis pelo git.
 >
 
 ### Rodando o Projeto
@@ -59,10 +59,11 @@ Suporta os seguintes bancos de dados:
 
 ```
 > node index.js
+ou
 > nodemon index.js
 ```
 
-2. Para desenvolvimento sugiro o nodemon, basta instala-lo globalmente e iniciar o projeto, a cada modificação ele reiniciará o server autormaticamente.
+2. Para desenvolvimento sugiro o nodemon, basta instala-lo globalmente com o projheto abaixo, a cada modificação ele reiniciará o server autormaticamente.
 
 ```
 > npm i -g nodemon
@@ -71,3 +72,7 @@ Suporta os seguintes bancos de dados:
 3. Para gerar os acessos necessários deve-se acessar a rota **/sincronizar** manualmente ou pelo navegador
 
 [https://localhost/sincronizar](https://localhost/sincronizar)
+
+4. Para criar novas telas basta criar um html em **/WEB/views**, criar um controller para tela em **/WEB/controllers**, configurar a rota em **/WEB/config/menuRoute.js**, importar o javascript do controller em **/WEB/index.html**, adicionar os novos acessos no arquivo **index.js** na raiz do projeto e usar a rota sincronizar novamente.
+
+5. Para criar novos modelos no backend (objetos) basta adicionar novos arquivos em **/Models**, gerar uma rota em **/Routes**, importar e adicionar a rota em **index.js** na raiz do projeto.
