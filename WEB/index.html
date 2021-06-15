@@ -25,20 +25,6 @@
                     $scope.listaAcessos = [];
                     $scope.listaCategorias = [];
 
-                    //obter acessos e categorias para navegação
-                    requestService.GET('/rest/acesso/obterTodos', function (ret) {
-                        if (ret.error) {
-                            return;
-                        }
-                        $scope.listaAcessos = ret;
-                        $scope.listaCategorias = [];
-                        for (a in $scope.listaAcessos) {
-                            if (!$scope.listaCategorias.find(item => item == $scope.listaAcessos[a].categoria)) {
-                                $scope.listaCategorias.push(angular.copy($scope.listaAcessos[a].categoria));
-                            }
-                        }
-                    });
-
                     $scope.btnSair = function () {
                         requestService.POST('/autenticar/sair', null, function (ret) {
                             if (ret.error) {
@@ -48,8 +34,29 @@
                             document.location = '/';
                         });
                     }
+
+                    $scope.$on('$routeChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                        obterAcessos();
+                    });
+
+                    function obterAcessos () {
+                        //obter acessos e categorias para navegação
+                        requestService.GET('/rest/acesso/obterTodos', function (ret) {
+                            if (ret.error) {
+                                return;
+                            }
+                            $scope.listaAcessos = ret;
+                            $scope.listaCategorias = [];
+                            for (a in $scope.listaAcessos) {
+                                if (!$scope.listaCategorias.find(item => item == $scope.listaAcessos[a].categoria)) {
+                                    $scope.listaCategorias.push(angular.copy($scope.listaAcessos[a].categoria));
+                                }
+                            }
+                        });
+                    }
                 }
             ]);
+            
         </script>
         <!-- Rotas -->
         <script type="text/javascript" src="./config/menuRoute.js"></script>

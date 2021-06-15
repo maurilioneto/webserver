@@ -10,7 +10,6 @@ function($scope, requestService) {
         if ($scope.error) return;
 
         requestService.POST('/autenticar/', usuario, function (res) {
-            console.log(res);
             if (res.error) {
                 $scope.error = res.error;
             } else {
