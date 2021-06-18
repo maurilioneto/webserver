@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../Sequelize');
-const TipoAcesso = require('./TipoAcesso');
 
 const Usuario = sequelize.define('Usuario', {
   //Atributos vão aqui
@@ -39,7 +38,5 @@ const Usuario = sequelize.define('Usuario', {
 }, {
   tableName: 'Usuario'
 });
-
-TipoAcesso.hasMany(Usuario);
 
 module.exports = Usuario;

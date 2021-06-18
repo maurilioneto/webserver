@@ -8,10 +8,8 @@
     "databasePassword": "admin",
     "databaseSchema": "webserver",
     "databaseHost": "localhost",
-    "createDatabase": true, 
-    "createDatabaseAlter": false,
+    "DATABASE_ACTION": "update",
     "SALT": 10,
     "SECRET": "bacon is good!",
-    "DEBUG": true,
-    "TIPOACESSODEFAULT": 1
+    "DEBUG": true
 }

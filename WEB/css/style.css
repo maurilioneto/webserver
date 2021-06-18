@@ -43,3 +43,6 @@ body {
     width: 100%;
 }
 
+.card {
+    border-radius: 12px !important;
+}
