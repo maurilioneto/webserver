@@ -10,7 +10,7 @@ const config = require('./config.json');
 //DEFINIR A CONEXÃO
 const sequelize = new Sequelize(config.databaseSchema, config.databaseUser, config.databasePassword, {
     host: config.databaseHost,
-    dialect: config.databaseVendor/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
+    dialect: config.DATABASE_TYPE/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
 });
 
 //TENTAR CONEXÃO

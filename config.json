@@ -1,17 +1,15 @@
 {
     "PORT": 443,
     "HOST": "https://localhost",
-    "rootFolder": "./WEB",
+    "WEB_FOLDER": "./WEB",
     "defaultIndex": "/index.html",
     "databaseVendor": "postgres",
     "databaseUser": "postgres",
     "databasePassword": "admin",
     "databaseSchema": "webserver",
     "databaseHost": "localhost",
-    "createDatabase": true, 
-    "createDatabaseAlter": false,
+    "DATABASE_ACTION": "update",
     "SALT": 10,
     "SECRET": "bacon is good!",
-    "DEBUG": true,
-    "TIPOACESSODEFAULT": 1
+    "DEBUG": true
 }

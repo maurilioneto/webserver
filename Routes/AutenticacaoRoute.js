@@ -80,7 +80,6 @@ autenticacaoRoute.post('/check', async (req, res) => {
 
 //MIDDLEWARE DE VALIDACAO
 const validarToken = (req, res, next) => {
-
     if (req.cookies && req.cookies.authentication) {
         let user = jw.verify(req.cookies.authentication, config.SECRET)
         if (!user) {
@@ -92,6 +91,11 @@ const validarToken = (req, res, next) => {
         //autorizado a fazer a requisição
         next();
     } else {
+        //caso seja requisicao por acessos ignorar redirect
+        if (req.url == '/acesso/obterTodos') {
+            res.status(403).json({});
+            return;
+        }
         //redirecionar para login
         res.status(403).json({redirect: '#!/login'});
     }
