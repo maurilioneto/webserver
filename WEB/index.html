@@ -86,7 +86,7 @@
                 </button>
                 <div class="navbar-collapse collapse justify-content-end" id="navbarCategorias">
                     <ul class="navbar-nav my-2 mb-lg-0">
-                        <li class="nav-item dropdown" ng-repeat="categoria in listaCategorias">
+                        <li class="nav-item dropdown" ng-repeat="categoria in listaCategorias" ng-show="categoria">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{categoria}}</a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="{{categoria}}">
                                 <li ng-repeat="acesso in listaAcessos | filter:{categoria: categoria}"><a class="dropdown-item" href="{{acesso.rota}}">{{acesso.descricao}}</a></li>
