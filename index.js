@@ -11,6 +11,7 @@ const app = express();
 
 //IMPORTAR ROTAS
 const {autenticacaoRoute, validarToken} = require('./Routes/AutenticacaoRoute');
+const sincronizarRoute = require('./Routes/SincronizarRoute');
 const usuarioRoute = require('./Routes/UsuarioRoute');
 const acessoRoute = require('./Routes/AcessoRoute');
 
@@ -34,14 +35,7 @@ app.use('/rest/usuario', usuarioRoute);
 app.use('/rest/acesso', acessoRoute);
 
 //SINCRONIZAR OS ACESSOS
-const Acesso = require('./Models/Acesso');
-app.get('/sincronizar', (req, res) => {
-    //adicionar Acessos
-    Acesso.create({id: 10, descricao: 'Rota 1', rota: '#!/rota1', categoria: 'Cadastros'});
-    Acesso.create({id: 20, descricao: 'Rota 2', rota: '#!/rota2', categoria: 'Cadastros'});
-    Acesso.create({id: 30, descricao: 'Principal', rota: '#!/principal', categoria: 'Consultas'});
-    res.status(200).send('OK');
-});
+app.get('/sincronizar', sincronizarRoute);
 
 //ROTAS FRONTEND
 app.use((req, res) => {

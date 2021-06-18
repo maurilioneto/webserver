@@ -40,7 +40,7 @@ autenticacaoRoute.post('/', async (req, res) => {
 //REGISTRAR
 autenticacaoRoute.post('/registrar', async (req, res) => {
     try {
-        const usuario = await Usuario.build(req.body);
+        const usuario = await Usuario.build({TipoAcessoId: config.TIPOACESSODEFAULT, ...req.body});
         //gerar hash da senha
         usuario.senha = await bcrypt.hashSync(usuario.senha, config.SALT);
         await usuario.save();
@@ -80,7 +80,15 @@ autenticacaoRoute.post('/check', async (req, res) => {
 
 //MIDDLEWARE DE VALIDACAO
 const validarToken = (req, res, next) => {
-    if (req.cookies && req.cookies.authentication && jw.verify(req.cookies.authentication, config.SECRET)) {
+
+    if (req.cookies && req.cookies.authentication) {
+        let user = jw.verify(req.cookies.authentication, config.SECRET)
+        if (!user) {
+            //redirecionar para login
+            res.status(403).json({redirect: '#!/login'});
+            return;
+        }
+        req.usuario = user;
         //autorizado a fazer a requisição
         next();
     } else {

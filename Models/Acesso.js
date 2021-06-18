@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../Sequelize');
 const Categoria = DataTypes.ENUM('Cadastros', 'Utilitários', 'Consultas', 'Relatórios', 'Dashboards', 'Configurações');
 

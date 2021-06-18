@@ -1,5 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../Sequelize');
+const TipoAcesso = require('./TipoAcesso');
 
 const Usuario = sequelize.define('Usuario', {
   //Atributos vão aqui
@@ -29,9 +30,16 @@ const Usuario = sequelize.define('Usuario', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
     allowNull: false
+  },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
   }
 }, {
   tableName: 'Usuario'
 });
+
+TipoAcesso.hasMany(Usuario);
 
 module.exports = Usuario;

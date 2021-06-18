@@ -9,8 +9,9 @@
     "databaseSchema": "webserver",
     "databaseHost": "localhost",
     "createDatabase": true, 
-    "createDatabaseAlter": true,
+    "createDatabaseAlter": false,
     "SALT": 10,
     "SECRET": "bacon is good!",
-    "DEBUG": true
+    "DEBUG": true,
+    "TIPOACESSODEFAULT": 1
 }

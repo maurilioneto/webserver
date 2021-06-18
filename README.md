@@ -73,6 +73,6 @@ ou
 
 [https://localhost/sincronizar](https://localhost/sincronizar)
 
-4. Para criar novas telas basta criar um html em **/WEB/views**, criar um controller para tela em **/WEB/controllers**, configurar a rota em **/WEB/config/menuRoute.js**, importar o javascript do controller em **/WEB/index.html**, adicionar os novos acessos no arquivo **index.js** na raiz do projeto e usar a rota sincronizar novamente.
+4. Para criar novas telas basta criar um html em **/WEB/views**, criar um controller para tela em **/WEB/controllers**, configurar a rota em **/WEB/config/menuRoute.js**, importar o javascript do controller em **/WEB/index.html**, adicionar os novos acessos no arquivo **/Routes/SincronizarRoute.js** na raiz do projeto e usar a rota sincronizar novamente.
 
 5. Para criar novos modelos no backend (objetos) basta adicionar novos arquivos em **/Models**, gerar uma rota em **/Routes**, importar e adicionar a rota em **index.js** na raiz do projeto.

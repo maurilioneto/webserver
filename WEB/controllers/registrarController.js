@@ -6,7 +6,7 @@ function($scope, requestService) {
 
         //validações
         $scope.error = undefined;
-        if (!usuario || !usuario.nome || usuario.email || !usuario.senha) $scope.error = "Informe um nome, e-mail e senha validos!";
+        if (!usuario || !usuario.nome || !usuario.email || !usuario.senha) $scope.error = "Informe um nome, e-mail e senha validos!";
         if (usuario.senha != confirmaSenha) $scope.error = "As senhas não coincidem!";
         if ($scope.error) return;
 
