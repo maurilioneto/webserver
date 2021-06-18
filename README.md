@@ -30,15 +30,14 @@ Suporta os seguintes bancos de dados:
 {
     "PORT": 443,
     "HOST": "https://localhost",
-    "rootFolder": "./WEB",
-    "defaultIndex": "/index.html",
-    "databaseVendor": "postgres",
-    "databaseUser": "postgres",
-    "databasePassword": "admin",
-    "databaseSchema": "webserver",
-    "databaseHost": "localhost",
-    "createDatabase": true, 
-    "createDatabaseAlter": true,
+    "WEB_FOLDER": "./WEB",
+    "DEFAULT_INDEX": "/index.html",
+    "DATABASE_TYPE": "postgres",
+    "DATABASE_USER": "postgres",
+    "DATABASE_PASSWORD": "admin",
+    "DATABASE_SCHEMA": "webserver",
+    "DATABASE_HOST": "localhost",
+    "DATABASE_ACTION": "update",
     "SALT": 10,
     "SECRET": "bacon is good!",
     "DEBUG": true
@@ -55,24 +54,29 @@ Suporta os seguintes bancos de dados:
 
 ### Rodando o Projeto
 
-1. Basta rodá-lo com node ou nodemon.
+1. Instalar as dependências
 
 ```
-> node index.js
-ou
-> nodemon index.js
+> npm install
 ```
-
-2. Para desenvolvimento sugiro o nodemon, basta instala-lo globalmente com o projheto abaixo, a cada modificação ele reiniciará o server autormaticamente.
+2. Rodar o projeto
 
 ```
-> npm i -g nodemon
+//para testar use o comando npm test (regarrega ao alterar arquivos)
+> npm test
+
+//para teste ou produção (necessário reiniciar ao fazer modificações)
+> npm start
 ```
 
-3. Para gerar os acessos necessários deve-se acessar a rota **/sincronizar** manualmente ou pelo navegador
+O projeto ficará acessível em [https://localhost](https://localhost) (ignore os avisos de segurança como certificado, já que é um certificado gerado sem um domínio).
 
-[https://localhost/sincronizar](https://localhost/sincronizar)
+3. Para gerar os acessos e o primeiro usuário deve-se acessar a rota **/sincronizar** manualmente ou pelo navegador.
+
+[https://localhost/rest/sincronizar](https://localhost/rest/sincronizar)
+
+O usuário padrão é 'admin@sistema.com', senha 'admin'.
 
 4. Para criar novas telas basta criar um html em **/WEB/views**, criar um controller para tela em **/WEB/controllers**, configurar a rota em **/WEB/config/menuRoute.js**, importar o javascript do controller em **/WEB/index.html**, adicionar os novos acessos no arquivo **/Routes/SincronizarRoute.js** na raiz do projeto e usar a rota sincronizar novamente.
 
-5. Para criar novos modelos no backend (objetos) basta adicionar novos arquivos em **/Models**, gerar uma rota em **/Routes**, importar e adicionar a rota em **index.js** na raiz do projeto.
+5. Para criar novos modelos no backend (objetos) basta adicionar novos arquivos em **/Models**, gerar uma rota em **/Routes** e ao reiniciar a rota já estará funcionando.

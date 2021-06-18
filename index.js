@@ -47,8 +47,8 @@ for (rota in listaRotas) {
 app.use((req, res) => {
     
     //obtendo requisição
-    var filename = req.url !== '/' ? req.url:config.defaultIndex;
-    var fullPath = config.rootFolder + filename;
+    var filename = req.url !== '/' ? req.url:config.DEFAULT_INDEX;
+    var fullPath = config.WEB_FOLDER + filename;
 
     //debug
     config.DEBUG && console.log(`Requisição de ${req.ip} por ${filename}`)

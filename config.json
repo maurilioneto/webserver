@@ -1,7 +1,7 @@
 {
     "PORT": 443,
     "HOST": "https://localhost",
-    "rootFolder": "./WEB",
+    "WEB_FOLDER": "./WEB",
     "defaultIndex": "/index.html",
     "databaseVendor": "postgres",
     "databaseUser": "postgres",
