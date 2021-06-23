@@ -19,6 +19,17 @@ body {
     overflow: auto;
 }
 
+.h-fill {
+    width: calc(100% -2em);
+    height: calc(100% -86px -2em);
+    margin: 1em;
+    overflow: auto;
+}
+
+.selecionado {
+    background-color: lightgray;
+}
+
 .card-xl {
     width: 700px;
 }
@@ -46,3 +57,16 @@ body {
 .card {
     border-radius: 12px !important;
 }
+
+.f1 {flex: 1; margin-left: 0.5em; margin-right: 0.5em;}
+.f2 {flex: 2; margin-left: 0.5em; margin-right: 0.5em;}
+.f3 {flex: 3; margin-left: 0.5em; margin-right: 0.5em;}
+.f4 {flex: 4; margin-left: 0.5em; margin-right: 0.5em;}
+.f5 {flex: 5; margin-left: 0.5em; margin-right: 0.5em;}
+.f6 {flex: 6; margin-left: 0.5em; margin-right: 0.5em;}
+.f7 {flex: 7; margin-left: 0.5em; margin-right: 0.5em;}
+.f8 {flex: 8; margin-left: 0.5em; margin-right: 0.5em;}
+.f9 {flex: 9; margin-left: 0.5em; margin-right: 0.5em;}
+.f10 {flex: 10; margin-left: 0.5em; margin-right: 0.5em;}
+.f11 {flex: 11; margin-left: 0.5em; margin-right: 0.5em;}
+.f12 {flex: 12; margin-left: 0.5em; margin-right: 0.5em;}

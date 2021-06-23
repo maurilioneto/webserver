@@ -11,6 +11,7 @@ const app = express();
 
 //IMPORTAR ROTAS
 const {autenticacaoRoute, validarToken} = require('./Routes/autenticacaoRoute');
+const sincronizarRoute = require('./Routes/sincronizarRoute');
 
 //CONFIGURACAO 
 const config = require('./config.json');
@@ -29,18 +30,26 @@ app.use('/autenticar', autenticacaoRoute);
 app.use('/rest', express.json());
 app.use('/rest', validarToken);
 
+//SINCRONIZAR
+app.use('/sincronizar', sincronizarRoute);
+
 //SINCRONIZAR ROTAS
 const listaRotas = fs.readdirSync('./Routes/');
 for (rota in listaRotas) {
-    //IGNORAR AUTENTICAÇÃO
-    if (listaRotas[rota] == 'autenticacaoRoute.js') {
+    //IGNORAR AUTENTICAÇÃO E SINCRONIZAR
+    if (listaRotas[rota] == 'AutenticacaoRoute.js' || listaRotas[rota] == 'SincronizarRoute.js') {
         continue;
     }
+
     //IMPORTAR ROTA
-    let route = require(`./Routes/${listaRotas[rota]}`);
-    //USAR NOME DO ARQUIVO COMO ROTA
-    app.use(`/rest/${listaRotas[rota].split('Route.js')[0]}`, route);
-    config.DEBUG && console.log(`Sincronizado rota para o arquivo ${listaRotas[rota]} -> /rest/${listaRotas[rota].split('Route.js')[0]}`);
+    try {
+        let route = require(`./Routes/${listaRotas[rota]}`);
+        //USAR NOME DO ARQUIVO COMO ROTA
+        app.use(`/rest/${listaRotas[rota].split('Route.js')[0]}`, route);
+        config.DEBUG && console.log(`Sincronizado rota para o arquivo ${listaRotas[rota]} -> /rest/${listaRotas[rota].split('Route.js')[0]}`);
+    } catch {
+
+    }
 }
 
 //ROTAS FRONTEND
@@ -65,6 +74,9 @@ app.use((req, res) => {
 
 //CONSTRUIR SERVER
 const httpsServer = https.createServer(credentials, app);
+
+//IMPORTAR MODELOS
+const Models = require('./Models/Models');
 
 //CRIAR BASE DE DADOS
 sequelize.sync({

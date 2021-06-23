@@ -8,8 +8,8 @@ const config = require('./config.json');
 //     storage: './DB/database.sqlite'
 // });
 //DEFINIR A CONEXÃO
-const sequelize = new Sequelize(config.databaseSchema, config.databaseUser, config.databasePassword, {
-    host: config.databaseHost,
+const sequelize = new Sequelize(config.DATABASE_SCHEMA, config.DATABASE_USER, config.DATABASE_PASSWORD, {
+    host: config.DATABASE_HOST,
     dialect: config.DATABASE_TYPE/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
 });
 

@@ -7,14 +7,13 @@
         <script type="text/javascript" src="./lib/angularjs/angular.min.js"></script>
         <script type="text/javascript" src="./lib/angularjs/angular-route.min.js"></script>
         <script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./lib/jquery/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
         <!--Iniciar aplicação angular-->
         <script>
             //cria angularjs app
-            var app = angular.module('webserver', [
-                'ngRoute'
-            ]);
+            var app = angular.module('webserver', ['ngRoute']);
 
             //controller geral
             app.controller('mainController', ['$scope', 'requestService',
