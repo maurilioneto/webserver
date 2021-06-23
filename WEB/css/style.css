@@ -70,3 +70,16 @@ body {
 .f10 {flex: 10; margin-left: 0.5em; margin-right: 0.5em;}
 .f11 {flex: 11; margin-left: 0.5em; margin-right: 0.5em;}
 .f12 {flex: 12; margin-left: 0.5em; margin-right: 0.5em;}
+
+.c1 {flex: 1;}
+.c2 {flex: 2;}
+.c3 {flex: 3;}
+.c4 {flex: 4;}
+.c5 {flex: 5;}
+.c6 {flex: 6;}
+.c7 {flex: 7;}
+.c8 {flex: 8;}
+.c9 {flex: 9;}
+.c10 {flex: 10;}
+.c11 {flex: 11;}
+.c12 {flex: 12;}

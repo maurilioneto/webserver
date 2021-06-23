@@ -30,7 +30,9 @@ app.config(function($routeProvider){
             templateUrl : '/views/cadastroTipoItem.html',
             controller: 'cadastroTipoItemController'
         })
-
-
+        .when("/cadastroMedida", {
+            templateUrl : '/views/cadastroMedida.html',
+            controller: 'cadastroMedidaController'
+        })
         .otherwise({redirectTo: '/'});
     });

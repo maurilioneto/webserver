@@ -1,7 +1,7 @@
-app.controller('cadastroTipoItemController', ['$scope', '$filter', 'requestService',
+app.controller('cadastroMedidaController', ['$scope', '$filter', 'requestService',
 function($scope, $filter, requestService) {
 
-    $scope.obterTipoItens = () => {
+    $scope.obterMedidas = () => {
 
         //LIMPAR DADOS
         $scope.tabela = {
@@ -9,71 +9,77 @@ function($scope, $filter, requestService) {
             [
                 {
                     nome: 'id',
-                    descricao: 'ID'
+                    descricao: 'ID',
+                    class: 'f1',
                 },
                 {
                     nome: 'descricao',
-                    descricao: 'Descrição'
+                    descricao: 'Descrição',
+                    class: 'f1',
+                },
+                {
+                    nome: 'sigla',
+                    descricao: 'Sigla',
+                    class: 'f1',
                 },
             ],
             dados: [],        
         }
 
-        requestService.GET('rest/tipoItem/obterTodos', (ret) => {
+        requestService.GET('rest/medida/obterTodos', (ret) => {
             if (ret.error) {
                 modalAlerta('Erro!', ret.error);
                 return;
             }
-            $scope.tabela.dados = ret;
+            $scope.tabela.dados = ret ? ret: [];
         })
     }
 
-    $scope.obterTipoItens();
+    $scope.obterMedidas();
 
     $scope.selecionar = (linha) => {
         $scope.objetoSelecionado = linha;
     }
 
     $scope.incluir = () => {
-        $scope.tipoItem = {};
+        $scope.medida = {};
         $("#modalCadastro").modal('show');
     }
 
-    $scope.alterar = (tipoItem) => {
-        if (!tipoItem) {
+    $scope.alterar = (medida) => {
+        if (!medida || !medida.id) {
             modalAlerta('Atenção', 'Selecione um item para alterar!');
             return;
         }
-        
-        $scope.tipoItem = angular.copy(tipoItem);
+
+        $scope.medida = angular.copy(medida);
         $("#modalCadastro").modal('show');
     }
 
-    $scope.excluir = (tipoItem) => {
-        if (!tipoItem) {
+    $scope.excluir = (medida) => {
+        if (!medida || !medida.id) {
             modalAlerta('Atenção', 'Selecione um item para excluir!');
             return;
         }
 
-        requestService.POST(`/rest/tipoItem/deletarPorId/${tipoItem.id}`, null, (ret) => {
+        requestService.POST(`/rest/medida/deletarPorId/${medida.id}`, null, (ret) => {
             if (ret.error) {
                 modalAlerta('Erro!', ret.error);
                 return;
             }
-            $scope.obterTipoItens();
+            $scope.obterMedidas();
         });
 
     }
 
-    $scope.salvar = (tipoItem) => {
-        requestService.POST(`/rest/tipoItem/salvar`, tipoItem, (ret) => {
+    $scope.salvar = (medida) => {
+        requestService.POST(`/rest/medida/salvar`, medida, (ret) => {
             if (ret.error) {
                 modalAlerta('Erro!', ret.error);
                 $('#modalCadastro').modal('show');
                 return;
             }
-            modalAlerta('Aviso', 'Cadastro foi enviado com sucesso!');
-            $scope.obterTipoItens();
+            $scope.obterMedidas();
         });
     }
 

@@ -12,6 +12,11 @@ const Medida = sequelize.define('Medida', {
   descricao: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  sigla: {
+    type: DataTypes.CHAR(5),
+    allowNull: false,
+    unique: true
   }
 }, {
   tableName: 'Medida'

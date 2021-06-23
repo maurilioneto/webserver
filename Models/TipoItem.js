@@ -11,7 +11,10 @@ const TipoItem = sequelize.define('TipoItem', {
   },
   descricao: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 }, {
   tableName: 'TipoItem'

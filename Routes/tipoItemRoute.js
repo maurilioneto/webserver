@@ -1,6 +1,7 @@
 const express = require('express');
 const TipoItem = require('../Models/TipoItem');
 const config = require('../config.json');
+const computarErro = require('../computarErro');
 
 const tipoItemRoute = express.Router();
 
@@ -9,7 +10,8 @@ tipoItemRoute.get('/obterTodos', async (req, res) => {
     await TipoItem.findAll().then(data => {
         res.status(200).json(data.flat());
     }).catch(error => {
-        res.status(400).send("Não foi possível obter os Tipos!\n" + `Error: ${error}`);
+        error = computarErro(error);
+        res.status(400).send("Não foi possível obter os Tipos!\n\r" + `Erro: ${error}`);
     })
 });
 
@@ -18,7 +20,8 @@ tipoItemRoute.get('/obterPorId/:id', async (req, res) => {
     await TipoItem.findByPk(req.params.id).then(data => {
         res.status(200).json(data);
     }).catch(error => {
-        res.status(400).send("Não foi possível obter os Tipos!\n" + `Error: ${error}`);
+        error = computarErro(error);
+        res.status(400).send("Não foi possível obter os Tipos!\n\r" + `Erro: ${error}`);
     })
 });
 
@@ -31,13 +34,13 @@ tipoItemRoute.post('/salvar', async (req, res) => {
                 tipoItem[i] = req.body[i];
             }
             await tipoItem.save();
-            console.log(tipoItem);
         } else {
             tipoItem = await TipoItem.create(req.body);
         }
         res.status(200).json(tipoItem);
     } catch (error) {
-        res.status(400).send("Não foi possível salvar o Tipo!\n" + `Error: ${error}`);
+        error = computarErro(error);
+        res.status(400).send("Não foi possível salvar o Tipo!\n\r" + `Erro: ${error}`);
     }
 });
 
@@ -47,7 +50,8 @@ tipoItemRoute.post('/deletarPorId/:id', async (req, res) => {
         tipoItem.destroy();
         res.status(200).send(tipoItem);
     } catch (error) {
-        res.status(400).send("Não foi possícel deletar o Tipo!\n" + `Error: ${error}`);
+        error = computarErro(error);
+        res.status(400).send("Não foi possícel deletar o Tipo!\n\r" + `Erro: ${error}`);
     }
 });
 

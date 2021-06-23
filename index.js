@@ -47,8 +47,8 @@ for (rota in listaRotas) {
         //USAR NOME DO ARQUIVO COMO ROTA
         app.use(`/rest/${listaRotas[rota].split('Route.js')[0]}`, route);
         config.DEBUG && console.log(`Sincronizado rota para o arquivo ${listaRotas[rota]} -> /rest/${listaRotas[rota].split('Route.js')[0]}`);
-    } catch {
-
+    } catch (error) {
+        console.error(error);
     }
 }
 

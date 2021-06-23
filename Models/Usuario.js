@@ -11,11 +11,18 @@ const Usuario = sequelize.define('Usuario', {
   },
   nome: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    validate: {
+      isEmail: true,
+    },
+    unique: true
   },
   senha: {
     type: DataTypes.STRING,
