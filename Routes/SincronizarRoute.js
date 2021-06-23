@@ -10,9 +10,10 @@ const sincronizarRoute = express.Router();
 sincronizarRoute.use((req, res) => {
 
     //Adicionar Acessos
-    Acesso.create({id: 10, descricao: 'Rota 1', rota: '#!/rota1', categoria: 'Cadastros'});
-    Acesso.create({id: 20, descricao: 'Rota 2', rota: '#!/rota2', categoria: 'Cadastros'});
-    Acesso.create({id: 30, descricao: 'Principal', rota: '#!/principal', categoria: 'Consultas'});
+    Acesso.create({id: 10010, descricao: 'Rota 1', rota: '#!/rota1', categoria: 'Cadastros'});
+    Acesso.create({id: 10020, descricao: 'Rota 2', rota: '#!/rota2', categoria: 'Cadastros'});
+    Acesso.create({id: 10030, descricao: 'Tipo de Item', rota: '#!/cadastroTipoItem', categoria: 'Cadastros'});
+    Acesso.create({id: 20010, descricao: 'Principal', rota: '#!/principal', categoria: 'Consultas'});
 
     //Adicionar usuario caso não houver
     Usuario.findByPk(1).then(usuario => {

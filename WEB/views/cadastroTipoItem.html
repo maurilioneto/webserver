@@ -1,0 +1,83 @@
+<div class="card p-5 h-fill">
+    <div class="card-title ">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#!/principal">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cadastro Tipo de Item</li>
+            </ol>
+        </nav>
+        <div class="d-flex">
+            <div class="btn-group" role="group" aria-label="Ações">
+                <button type="button" class="btn btn-success" ng-click="incluir({})">Incluir</button>
+                <button type="button" class="btn btn-primary" ng-click="incluir(objetoSelecionado)">Alterar</button>
+                <button type="button" class="btn btn-danger" ng-click="excluir(objetoSelecionado)">Excluir</button>
+            </div>
+            <div class="ms-auto">
+                <input type="text" class="form-control" ng-model="busca.$">
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-bordered table-sm table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" ng-repeat="item in tabela.cabecalho" ng-bind="item.descricao"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="linha in tabela.dados | filter:busca" ng-click="selecionar(linha)" ng-class="{selecionado: linha == objetoSelecionado}">
+                    <th scope="row" class="fw-normal" ng-repeat="item in tabela.cabecalho" ng-bind="item.filtro ? item.filtro(linha[item.nome]) : linha[item.nome]"></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <!-- PAGINAÇÃO AQUI-->
+    </div>
+</div>
+
+<!-- MODAL ALERTA -->
+<div class="modal" tabindex="-1" id="modalCadastro">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tipo de Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+                <div class="f2">
+                    <label>ID</label>
+                    <input type="text" class="form-control" ng-model="tipoItem.id" readonly>
+                </div>
+                <div class="f10">
+                    <label>Descrição</label>
+                    <input type="text" class="form-control" ng-model="tipoItem.descricao">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" ng-click="salvar(tipoItem)">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL ALERTA -->
+<div class="modal" tabindex="-1" id="modalAlerta">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{tituloModal}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>{{mensagemModal}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" ng-show="confirmaModal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-show="confirmaModal" ng-click="callback">Ok</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-show="!confirmaModal" ng-click="callback">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

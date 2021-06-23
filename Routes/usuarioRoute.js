@@ -28,6 +28,11 @@ usuarioRoute.post('/obterPorId', async (req, res) => {
 //SALVAR
 usuarioRoute.post('/salvar', async (req, res) => {
     try {
+        //proteger, se não for usuário logado ou admin
+        if (req.body.id && (!req.usuario.isAdmin && !req.usuario.id == req.body.id)) {
+            res.status(403).send('Sem permissão!');
+            return;
+        }
         const usuario = await Usuario.build(req.body);
         usuario.senha = bcrypt.hashSync(usuario.senha, config.SALT);
         await usuario.save();
@@ -40,7 +45,12 @@ usuarioRoute.post('/salvar', async (req, res) => {
 //DELETAR
 usuarioRoute.post('/deletarPorId', async (req, res) => {
     try {
-        const usuario = await Usuario.findByPk(req.body.id);
+        //proteger, se não for usuário logado ou admin
+        if (req.body.id && (!req.usuario.isAdmin && !req.usuario.id == req.body.id)) {
+            res.status(403).send('Sem permissão!');
+            return;
+        }
+        const usuario = await Usuario.findByPk(req.body);
         usuario.destroy();
         res.status(200).send(usuario);
     } catch (error) {
