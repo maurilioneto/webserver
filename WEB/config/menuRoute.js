@@ -25,12 +25,6 @@ app.config(function($routeProvider){
             templateUrl : '/views/rota2.html',
             controller: 'rota2Controller'
         })
-        //CADASTROS
-        .when("/cadastroTipoItem", {
-            templateUrl : '/views/cadastroTipoItem.html',
-            controller: 'cadastroTipoItemController'
-        })
-
 
         .otherwise({redirectTo: '/'});
     });
