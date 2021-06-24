@@ -10,17 +10,17 @@ function($scope, $filter, requestService) {
                 {
                     nome: 'id',
                     descricao: 'ID',
-                    class: 'f1',
+                    class: 'c1',
                 },
                 {
                     nome: 'descricao',
                     descricao: 'Descrição',
-                    class: 'f1',
+                    class: 'c2',
                 },
                 {
                     nome: 'sigla',
                     descricao: 'Sigla',
-                    class: 'f1',
+                    class: 'c1',
                 },
             ],
             dados: [],        
@@ -81,6 +81,14 @@ function($scope, $filter, requestService) {
             }
             $scope.obterMedidas();
         });
+    }
+
+    $scope.ordenar = (descricao) => {
+        if ($scope.ordenacao && $scope.ordenacao[0] == '-') {
+            $scope.ordenacao = '+'+descricao;
+        } else {
+            $scope.ordenacao = '-'+descricao;
+        }
     }
 
     //UTILITÁRIOS

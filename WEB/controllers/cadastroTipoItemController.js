@@ -9,11 +9,13 @@ function($scope, $filter, requestService) {
             [
                 {
                     nome: 'id',
-                    descricao: 'ID'
+                    descricao: 'ID',
+                    class: 'c1',
                 },
                 {
                     nome: 'descricao',
-                    descricao: 'Descrição'
+                    descricao: 'Descrição',
+                    class: 'c2',
                 },
             ],
             dados: [],        

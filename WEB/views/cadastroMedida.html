@@ -23,13 +23,21 @@
     <div class="card-body">
         <table class="table table-hover table-bordered table-sm table-striped">
             <thead>
-                <tr>
-                    <th scope="col" ng-class="item.class" ng-repeat="item in tabela.cabecalho" ng-bind="item.descricao"></th>
+                <tr class="d-flex">
+                    <th scope="col" ng-class="item.class" ng-repeat="item in tabela.cabecalho" ng-click="ordenar(item.nome)">
+                        {{item.descricao}} {{ordenacao == '-'+item.nome ? '▲':''}}{{ordenacao == '+'+item.nome? '▼':''}}
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="linha in tabela.dados | filter:busca" ng-click="selecionar(linha)" ng-class="{selecionado: linha == objetoSelecionado}">
-                    <th scope="row" class="fw-normal" ng-repeat="item in tabela.cabecalho" ng-bind="item.filtro ? item.filtro(linha[item.nome]) : linha[item.nome]"></th>
+                <tr class="d-flex" 
+                    ng-repeat="linha in tabela.dados | filter:busca | orderBy: ordenacao" 
+                    ng-click="selecionar(linha)" ng-class="{selecionado: linha == objetoSelecionado}">
+                    <th scope="row" 
+                        ng-class="item.class" class="fw-normal" 
+                        ng-repeat="item in tabela.cabecalho" 
+                        ng-bind="item.filtro ? item.filtro(linha[item.nome]) : linha[item.nome]">
+                    </th>
                 </tr>
             </tbody>
         </table>

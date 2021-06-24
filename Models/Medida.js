@@ -11,12 +11,18 @@ const Medida = sequelize.define('Medida', {
   },
   descricao: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   sigla: {
     type: DataTypes.CHAR(5),
     allowNull: false,
-    unique: true
+    unique: true,
+    validate: {
+      notEmpty: true
+    }
   }
 }, {
   tableName: 'Medida'
