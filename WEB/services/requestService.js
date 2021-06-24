@@ -8,7 +8,7 @@ app.service('requestService', ['$http', function ($http) {
 			if (retorno.data.redirect) {
 				document.location = retorno.data.redirect;
 			}
-			callback(retorno.data)
+			callback({error: retorno.data})
 		});      
 	}
 	
@@ -20,7 +20,7 @@ app.service('requestService', ['$http', function ($http) {
 			if (retorno.data.redirect) {
 				document.location = retorno.data.redirect;
 			}
-			callback(retorno.data)
+			callback({error: retorno.data})
 		});
 	}
 

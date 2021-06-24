@@ -3,7 +3,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#!/principal">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cadastro Tipo de Item</li>
+                <li class="breadcrumb-item active" aria-current="page">Cadastro Medida</li>
             </ol>
         </nav>
         <div class="d-flex">
@@ -24,7 +24,7 @@
         <table class="table table-hover table-bordered table-sm table-striped">
             <thead>
                 <tr>
-                    <th scope="col" ng-repeat="item in tabela.cabecalho" ng-bind="item.descricao"></th>
+                    <th scope="col" ng-class="item.class" ng-repeat="item in tabela.cabecalho" ng-bind="item.descricao"></th>
                 </tr>
             </thead>
             <tbody>
@@ -44,22 +44,26 @@
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tipo de Item</h5>
+                <h5 class="modal-title">Medida</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex">
                 <div class="f2">
                     <label>ID</label>
-                    <input type="text" class="form-control" ng-model="tipoItem.id" readonly>
+                    <input type="text" class="form-control" ng-model="medida.id" readonly>
                 </div>
-                <div class="f10">
+                <div class="f8">
                     <label>Descrição</label>
-                    <input type="text" class="form-control" ng-model="tipoItem.descricao">
+                    <input type="text" class="form-control" ng-model="medida.descricao">
+                </div>
+                <div class="f2">
+                    <label>Sigla</label>
+                    <input type="text" class="form-control" ng-model="medida.sigla" maxlength="5">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" ng-click="salvar(tipoItem)">💾 Salvar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" ng-click="salvar(medida)">💾 Salvar</button>
             </div>
         </div>
     </div>
